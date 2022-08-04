@@ -3,19 +3,30 @@ import styles from './TicketList.module.css';
 
 interface TicketListProps {
   tickets: Ticket[];
+  selectedTicketId: string;
+  setSelectedTicketId: any;
 }
 
 const TicketList = (props: TicketListProps) => {
-  const { tickets } = props;
+  const { tickets, selectedTicketId, setSelectedTicketId } = props;
   
   return (
     <div className={styles.ticketList}>
       <p className={styles.ticketTitle}>Jira Backlog</p>
-      {tickets.map(({ jiraId, name }) => (
-        <div key={jiraId} className={styles.ticket}>
-          <p>{name}</p>
-        </div>
-      ))}
+      {tickets.map(({ jiraId, name }) => {
+        let ticketStyles = styles.ticket;
+        if (jiraId === selectedTicketId) ticketStyles += ` ${styles.selected}`;
+
+        return (
+          <div
+            key={jiraId}
+            className={ticketStyles}
+            onClick={() => setSelectedTicketId(jiraId)}
+          >
+            <p>{name}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };

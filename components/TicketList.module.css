@@ -12,9 +12,17 @@
 }
 
 .ticket {
-  margin: 10px;
+  margin: 0px 10px;
+  padding: 0px 10px;
   border-style: solid;
   border-color: rgb(69, 69, 69);
-  border-width: 0px 0px 1px 0px;
+  border-radius: 3px;
+  border-width: 1px;
   font-size: small;
+}
+
+.selected {
+  font-weight: bold;
+  color: #6495ED;
+  border-color: #6495ED;
 }
