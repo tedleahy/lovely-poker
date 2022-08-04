@@ -8,7 +8,7 @@ export type Game = {
 
 export type Ticket = {
     jiraId: string;
-    isCurrentTicket: boolean;
+    name: string;
 }
 
 export type User = {

@@ -1,0 +1,20 @@
+.ticketList {
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  max-width: 80%;
+  margin: 20px;
+}
+
+.ticketTitle {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.ticket {
+  margin: 10px;
+  border-style: solid;
+  border-color: rgb(69, 69, 69);
+  border-width: 0px 0px 1px 0px;
+  font-size: small;
+}
