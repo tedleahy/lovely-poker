@@ -30,11 +30,11 @@ const ShowGame: NextPage = () => {
 
   return (
       <CenteredPage title={game.name}>
-      <TicketList
-        tickets={game.tickets}
-        selectedTicketId={game.selectedTicketId}
-        setSelectedTicketId={setSelectedTicketId}
-      />
+        <TicketList
+          tickets={game.tickets}
+          selectedTicketId={game.selectedTicketId}
+          setSelectedTicketId={setSelectedTicketId}
+        />
       </CenteredPage>
   );
 };

@@ -23,7 +23,7 @@ const TicketList = (props: TicketListProps) => {
             className={ticketStyles}
             onClick={() => setSelectedTicketId(jiraId)}
           >
-            <p>{name}</p>
+            <p>{jiraId}: {name}</p>
           </div>
         );
       })}
