@@ -16,21 +16,23 @@ const ShowGame: NextPage = () => {
     selectedTicketId: '',
     players: [],
   } as Game);
-  const [selectedTicketId, setSelectedTicketId] = useState('');
+
+  const setSelectedTicketId = (id: string): void => {
+    setGame({ ...game, selectedTicketId: id });
+  };
 
   useEffect(() => {
     if (!router.isReady) return;
 
     const gameId = parseInt(router.query.id as string);
     setGame(dummyGames[gameId - 1]);
-    setSelectedTicketId(game.selectedTicketId);
   }, [router.isReady]);
 
   return (
       <CenteredPage title={game.name}>
       <TicketList
         tickets={game.tickets}
-        selectedTicketId={selectedTicketId}
+        selectedTicketId={game.selectedTicketId}
         setSelectedTicketId={setSelectedTicketId}
       />
       </CenteredPage>
