@@ -3,6 +3,7 @@ export type Game = {
     dealerId: number;
     name: string;
     tickets: Ticket[];
+    selectedTicketId: string;
     players: User[];
 }
 

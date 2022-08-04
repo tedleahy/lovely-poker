@@ -1,5 +1,5 @@
-import { faker } from '@faker-js/faker';
-import { Game } from '../../types/games.types';
+import { faker } from "@faker-js/faker";
+import { Game } from "../../types/games.types";
 
 const users = [
   { id: 1, name: 'Gareth Bean' },
@@ -18,12 +18,14 @@ const sprintNames = [
 export function mkGame(userId: number): Game {
   // Pick random user for dealer
   const dealer = pickRandom(users);
+  const tickets = [1, 2, 3, 4, 5].map(mkTicket);
 
   return {
     id: userId,
     dealerId: dealer.id,
     name: sprintNames[userId - 1],
-    tickets: [1, 2, 3, 4, 5].map(mkTicket),
+    tickets: tickets,
+    selectedTicketId: pickRandom(tickets).jiraId,
     players: users.filter(user => user !== dealer),
   }
 }
@@ -48,190 +50,195 @@ function pickRandom(arr: any) {
 
 const dummyGames = [
   {
-    id: 1,
-    dealerId: 3,
-    name: "Team Zero Sprint Refinement",
-    tickets: [
+    "id": 1,
+    "dealerId": 1,
+    "name": "Team Zero Sprint Refinement",
+    "tickets": [
       {
-        jiraId: "AMF-22704",
-        name: "calculating a cross-platform JBOD",
+        "jiraId": "AMF-21239",
+        "name": "navigate the mobile RSS"
       },
       {
-        jiraId: "AMF-28357",
-        name: "hacking the wireless USB",
+        "jiraId": "AMF-22039",
+        "name": "bypass a virtual HEX"
       },
       {
-        jiraId: "AMF-281",
-        name: "index a primary AGP",
+        "jiraId": "AMF-28221",
+        "name": "calculating the mobile pixel"
       },
       {
-        jiraId: "AMF-21897",
-        name: "bypassing a open-source XML",
+        "jiraId": "AMF-22618",
+        "name": "navigating the virtual port"
       },
       {
-        jiraId: "AMF-26806",
-        name: "copying the redundant hard drive",
-      },
+        "jiraId": "AMF-29143",
+        "name": "compress the neural hard drive"
+      }
     ],
-    players: [
+    "selectedTicketId": "AMF-28221",
+    "players": [
       {
-        id: 1,
-        name: "Gareth Bean",
+        "id": 2,
+        "name": "Ali Keys"
       },
       {
-        id: 2,
-        name: "Ali Keys",
-      },
-    ],
+        "id": 3,
+        "name": "John Cena"
+      }
+    ]
   },
   {
-    id: 2,
-    dealerId: 1,
-    name: "Team Pug Sprint Refinement",
-    tickets: [
+    "id": 2,
+    "dealerId": 1,
+    "name": "Team Pug Sprint Refinement",
+    "tickets": [
       {
-        jiraId: "AMF-2319",
-        name: "copying a digital SSD",
+        "jiraId": "AMF-24825",
+        "name": "connecting a cross-platform array"
       },
       {
-        jiraId: "AMF-29446",
-        name: "parsing the solid state JBOD",
+        "jiraId": "AMF-22829",
+        "name": "quantifying the optical pixel"
       },
       {
-        jiraId: "AMF-25096",
-        name: "quantify the primary program",
+        "jiraId": "AMF-27611",
+        "name": "copy a bluetooth SDD"
       },
       {
-        jiraId: "AMF-27544",
-        name: "calculate a multi-byte feed",
+        "jiraId": "AMF-21570",
+        "name": "navigating the neural capacitor"
       },
       {
-        jiraId: "AMF-22440",
-        name: "transmitting the primary AGP",
-      },
+        "jiraId": "AMF-27442",
+        "name": "transmitting the cross-platform THX"
+      }
     ],
-    players: [
+    "selectedTicketId": "AMF-21570",
+    "players": [
       {
-        id: 2,
-        name: "Ali Keys",
+        "id": 2,
+        "name": "Ali Keys"
       },
       {
-        id: 3,
-        name: "John Cena",
-      },
-    ],
+        "id": 3,
+        "name": "John Cena"
+      }
+    ]
   },
   {
-    id: 3,
-    dealerId: 1,
-    name: "SMS Automation Refinement",
-    tickets: [
+    "id": 3,
+    "dealerId": 2,
+    "name": "SMS Automation Refinement",
+    "tickets": [
       {
-        jiraId: "AMF-26119",
-        name: "quantifying the virtual USB",
+        "jiraId": "AMF-27750",
+        "name": "calculating a primary interface"
       },
       {
-        jiraId: "AMF-28248",
-        name: "copying the virtual HTTP",
+        "jiraId": "AMF-26754",
+        "name": "indexing a haptic pixel"
       },
       {
-        jiraId: "AMF-2872",
-        name: "synthesizing a virtual sensor",
+        "jiraId": "AMF-2654",
+        "name": "parsing a open-source API"
       },
       {
-        jiraId: "AMF-24912",
-        name: "synthesizing a neural ADP",
+        "jiraId": "AMF-25217",
+        "name": "transmitting a haptic OCR"
       },
       {
-        jiraId: "AMF-29349",
-        name: "indexing a mobile SQL",
-      },
+        "jiraId": "AMF-23059",
+        "name": "generate the optical IB"
+      }
     ],
-    players: [
+    "selectedTicketId": "AMF-26754",
+    "players": [
       {
-        id: 2,
-        name: "Ali Keys",
+        "id": 1,
+        "name": "Gareth Bean"
       },
       {
-        id: 3,
-        name: "John Cena",
-      },
-    ],
+        "id": 3,
+        "name": "John Cena"
+      }
+    ]
   },
   {
-    id: 4,
-    dealerId: 1,
-    name: "Lovely Refinement",
-    tickets: [
+    "id": 4,
+    "dealerId": 2,
+    "name": "Lovely Refinement",
+    "tickets": [
       {
-        jiraId: "AMF-23926",
-        name: "calculate the primary DRAM",
+        "jiraId": "AMF-26037",
+        "name": "compressing a online JSON"
       },
       {
-        jiraId: "AMF-25897",
-        name: "connecting a multi-byte API",
+        "jiraId": "AMF-29702",
+        "name": "backing up a neural bus"
       },
       {
-        jiraId: "AMF-28392",
-        name: "overriding the 1080p program",
+        "jiraId": "AMF-28328",
+        "name": "calculate a haptic port"
       },
       {
-        jiraId: "AMF-26263",
-        name: "quantifying a neural system",
+        "jiraId": "AMF-23219",
+        "name": "backing up the cross-platform UDP"
       },
       {
-        jiraId: "AMF-29635",
-        name: "indexing the haptic XSS",
-      },
+        "jiraId": "AMF-26307",
+        "name": "hacking a digital RAM"
+      }
     ],
-    players: [
+    "selectedTicketId": "AMF-23219",
+    "players": [
       {
-        id: 2,
-        name: "Ali Keys",
+        "id": 1,
+        "name": "Gareth Bean"
       },
       {
-        id: 3,
-        name: "John Cena",
-      },
-    ],
+        "id": 3,
+        "name": "John Cena"
+      }
+    ]
   },
   {
-    id: 5,
-    dealerId: 1,
-    name: "Test Poker Game",
-    tickets: [
+    "id": 5,
+    "dealerId": 3,
+    "name": "Test Poker Game",
+    "tickets": [
       {
-        jiraId: "AMF-25785",
-        name: "reboot a wireless circuit",
+        "jiraId": "AMF-2348",
+        "name": "copying the mobile hard drive"
       },
       {
-        jiraId: "AMF-21455",
-        name: "program a optical CSS",
+        "jiraId": "AMF-26742",
+        "name": "compressing the neural application"
       },
       {
-        jiraId: "AMF-27186",
-        name: "reboot a back-end driver",
+        "jiraId": "AMF-24315",
+        "name": "override the mobile AGP"
       },
       {
-        jiraId: "AMF-27905",
-        name: "compressing a wireless interface",
+        "jiraId": "AMF-24544",
+        "name": "copy a multi-byte array"
       },
       {
-        jiraId: "AMF-23044",
-        name: "synthesizing a primary HDD",
-      },
+        "jiraId": "AMF-23322",
+        "name": "navigate the cross-platform microchip"
+      }
     ],
-    players: [
+    "selectedTicketId": "AMF-23322",
+    "players": [
       {
-        id: 2,
-        name: "Ali Keys",
+        "id": 1,
+        "name": "Gareth Bean"
       },
       {
-        id: 3,
-        name: "John Cena",
-      },
-    ],
-  },
+        "id": 2,
+        "name": "Ali Keys"
+      }
+    ]
+  }
 ];
 
 export default dummyGames;
