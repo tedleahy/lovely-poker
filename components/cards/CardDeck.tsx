@@ -1,5 +1,5 @@
 import { Card, Stack } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import styles from "./CardDeck.module.css";
 
 interface ICard {
@@ -9,24 +9,29 @@ interface ICard {
 
 interface CardDeckProps {
   cards: ICard[];
+  allSelected?: boolean;
 }
 
-const CardDeck = ({cards}: CardDeckProps) => {
+const CardDeck = ({cards, allSelected}: CardDeckProps) => {
   const [selectedCardId, setSelectedCardId] = useState(0);
 
   const getCardClasses = (card: ICard): string => {
+    const cardIsSelected = card.id === selectedCardId;
+
     return styles.cardFace
-      + (card.id === selectedCardId ? ` ${styles.selected}` : '');
+      + (cardIsSelected || allSelected ? ` ${styles.selected}` : '');
+  }
+
+  const handleCardClick = (card: ICard) => {
+    if (!allSelected) {
+      setSelectedCardId(card.id);
+    }
   }
 
   return (
-    <Stack
-      style={{ marginTop: "auto" }}
-      direction="row"
-      spacing={1}
-    >
-      {cards.map((card) => (
-        <Card key={card.id} className={styles.card} onClick={() => setSelectedCardId(card.id)}>
+    <Stack direction="row" spacing={1}>
+      {cards.map(card => (
+        <Card key={card.id} className={styles.card} onClick={() => handleCardClick(card)}>
           <div className={getCardClasses(card)}>
             {card.value}
           </div>
