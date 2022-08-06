@@ -5,15 +5,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 30px;
+  font-size: 28px;
   background-color: #f0f0f0;
   border-radius: 7px;
 }
 
 .cardFace {
-  height: 55px;
-  width: 55px;
-  border-radius: 27.5px;
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
   background-color: #d2d2d2;
   color: #333;
   display: flex;
