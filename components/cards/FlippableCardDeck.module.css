@@ -11,7 +11,7 @@
   border-radius: 7px;
 }
 
-.card.hasVote {
+.highlighted {
   background-color: #2574db;
   color: #fff;
 }

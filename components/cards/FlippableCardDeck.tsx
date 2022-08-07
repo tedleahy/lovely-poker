@@ -1,23 +1,18 @@
 import { Card, Stack } from "@mui/material";
 import { useState } from "react";
+import { FlippableCard } from "../../types/cards.types";
 import CardDeck from "./CardDeck";
 import styles from "./FlippableCardDeck.module.css";
 
-interface FlippableCard {
-  playerId: number;
-  firstValue: string;
-  flippedValue: string;
-}
-
 interface FlippableCardDeckProps {
   cards: FlippableCard[];
-  playerVotes: object;
+  cardIsHighlighted: (a: FlippableCard) => boolean;
 }
 
-const FlippableCardDeck = ({ cards }: FlippableCardDeckProps) => {
+const FlippableCardDeck = ({ cards, cardIsHighlighted }: FlippableCardDeckProps) => {
   const [isFlipped, setIsFlipped] = useState(false);
-  const flippedCards = cards.map(({ playerId, flippedValue }) => ({
-    id: playerId,
+  const flippedCards = cards.map(({ id, flippedValue }) => ({
+    id: id,
     value: flippedValue,
   }));
 
@@ -25,11 +20,16 @@ const FlippableCardDeck = ({ cards }: FlippableCardDeckProps) => {
     <CardDeck cards={flippedCards} allSelected={true} />
   ) : (
     <Stack direction="row" spacing={1}>
-      {cards.map((card) => (
-        <Card key={card.playerId} className={styles.card}>
-          {card.firstValue}
-        </Card>
-      ))}
+      {cards.map(card => {
+        const cardClasses = styles.card
+          + (cardIsHighlighted(card) ? ` ${styles.highlighted}` : '');
+
+        return (
+          <Card key={card.id} className={cardClasses}>
+            {card.value}
+          </Card>
+        );
+      })}
     </Stack>
   );
 };
