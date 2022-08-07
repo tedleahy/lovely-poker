@@ -1,11 +1,7 @@
 import { Card, Stack } from "@mui/material";
 import React, { useState } from "react";
+import { ICard } from "../../types/cards.types";
 import styles from "./CardDeck.module.css";
-
-interface ICard {
-	id: number;
-	value: string;
-}
 
 interface CardDeckProps {
   cards: ICard[];
