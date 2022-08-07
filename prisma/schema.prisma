@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String       @id @default(cuid())
+  name      String?
+  email     String?      @unique
+  games     GameUsers[]
+  votes     PlayerVote[]
+  createdAt DateTime     @default(now()) @map(name: "created_at")
+  updatedAt DateTime     @updatedAt @map(name: "updated_at")
+
+  @@map(name: "users")
+}
+
+model Game {
+  id        String       @id @default(cuid())
+  name      String
+  users     GameUsers[]
+  tickets   Ticket[]
+  votes     PlayerVote[]
+  createdAt DateTime     @default(now()) @map(name: "created_at")
+  updatedAt DateTime     @updatedAt @map(name: "updated_at")
+}
+
+model GameUsers {
+  gameId   String  @unique
+  game     Game    @relation(fields: [gameId], references: [id])
+  userId   String  @unique
+  user     User    @relation(fields: [userId], references: [id])
+  isDealer Boolean
+
+  @@id([gameId, userId])
+}
+
+model Ticket {
+  id     String       @id @default(cuid())
+  jiraId String       @unique
+  games  Game[]
+  votes  PlayerVote[]
+}
+
+model PlayerVote {
+  gameId   String @unique
+  game     Game   @relation(fields: [gameId], references: [id])
+  userId   String @unique
+  user     User   @relation(fields: [userId], references: [id])
+  ticketId String @unique
+  ticket   Ticket @relation(fields: [ticketId], references: [id])
+
+  @@id([gameId, userId, ticketId])
+}
