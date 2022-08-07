@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import GamesList from '../components/gamesList/GamesList'
+import type { NextPage } from "next";
+import Head from "next/head";
+import GamesList from "../../components/gamesList/GamesList";
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +13,6 @@ const Home: NextPage = () => {
       <GamesList />
     </>
   );
-}
+};
 
 export default Home;

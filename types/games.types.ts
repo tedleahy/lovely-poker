@@ -3,12 +3,13 @@ export type Game = {
     dealerId: number;
     name: string;
     tickets: Ticket[];
+    selectedTicketId: string;
     players: User[];
 }
 
 export type Ticket = {
     jiraId: string;
-    isCurrentTicket: boolean;
+    name: string;
 }
 
 export type User = {

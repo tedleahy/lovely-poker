@@ -1,0 +1,27 @@
+.card {
+  width: 80px;
+  height: 120px;
+  border: 1px solid rgb(122, 121, 121);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  background-color: #f0f0f0;
+  border-radius: 7px;
+}
+
+.cardFace {
+  height: 70px;
+  width: 70px;
+  border-radius: 35px;
+  background-color: #d2d2d2;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardFace.selected {
+  background-color: #2574db;
+  color: #fff;
+}
