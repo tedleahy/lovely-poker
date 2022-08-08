@@ -19,6 +19,13 @@ model User {
   @@map(name: "users")
 }
 
+model Ticket {
+  id      String       @id @default(cuid())
+  jiraKey String       @unique
+  games   Game[]
+  votes   PlayerVote[]
+}
+
 model Game {
   id        String       @id @default(cuid())
   name      String
@@ -30,28 +37,21 @@ model Game {
 }
 
 model GameUsers {
-  gameId   String  @unique
+  gameId   String
   game     Game    @relation(fields: [gameId], references: [id])
-  userId   String  @unique
+  userId   String
   user     User    @relation(fields: [userId], references: [id])
   isDealer Boolean
 
   @@id([gameId, userId])
 }
 
-model Ticket {
-  id     String       @id @default(cuid())
-  jiraId String       @unique
-  games  Game[]
-  votes  PlayerVote[]
-}
-
 model PlayerVote {
-  gameId   String @unique
+  gameId   String
   game     Game   @relation(fields: [gameId], references: [id])
-  userId   String @unique
+  userId   String
   user     User   @relation(fields: [userId], references: [id])
-  ticketId String @unique
+  ticketId String
   ticket   Ticket @relation(fields: [ticketId], references: [id])
 
   @@id([gameId, userId, ticketId])
