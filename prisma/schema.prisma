@@ -19,13 +19,6 @@ model User {
   @@map(name: "users")
 }
 
-model Ticket {
-  id      String       @id @default(cuid())
-  jiraKey String       @unique
-  games   Game[]
-  votes   PlayerVote[]
-}
-
 model Game {
   id        String       @id @default(cuid())
   name      String
