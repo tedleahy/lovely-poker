@@ -27,6 +27,8 @@ model Game {
   votes     PlayerVote[]
   createdAt DateTime     @default(now()) @map(name: "created_at")
   updatedAt DateTime     @updatedAt @map(name: "updated_at")
+  boardId           Int
+  selectedTicketKey String?    @map(name: "selected_ticket_key")
 }
 
 model GameUsers {
