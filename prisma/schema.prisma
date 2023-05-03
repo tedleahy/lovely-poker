@@ -8,30 +8,29 @@ datasource db {
 }
 
 model User {
-  id        String       @id @default(cuid())
-  name      String?
-  email     String?      @unique
-  games     GameUsers[]
-  votes     PlayerVote[]
-  createdAt DateTime     @default(now()) @map(name: "created_at")
-  updatedAt DateTime     @updatedAt @map(name: "updated_at")
+  id        String     @id @default(cuid())
+  fullName  String?
+  email     String     @unique
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime   @updatedAt @map("updated_at")
+  games     GameUser[]
+  votes     Vote[]
 
-  @@map(name: "users")
+  @@map("users")
 }
 
 model Game {
-  id        String       @id @default(cuid())
-  name      String
-  users     GameUsers[]
-  tickets   Ticket[]
-  votes     PlayerVote[]
-  createdAt DateTime     @default(now()) @map(name: "created_at")
-  updatedAt DateTime     @updatedAt @map(name: "updated_at")
+  id                String     @id @default(cuid())
+  name              String
   boardId           Int
-  selectedTicketKey String?    @map(name: "selected_ticket_key")
+  selectedTicketKey String?    @map("selected_ticket_key")
+  createdAt         DateTime   @default(now()) @map("created_at")
+  updatedAt         DateTime   @updatedAt @map("updated_at")
+  users             GameUser[]
+  votes             Vote[]
 }
 
-model GameUsers {
+model GameUser {
   gameId   String
   game     Game    @relation(fields: [gameId], references: [id])
   userId   String
@@ -41,13 +40,12 @@ model GameUsers {
   @@id([gameId, userId])
 }
 
-model PlayerVote {
-  gameId   String
-  game     Game   @relation(fields: [gameId], references: [id])
-  userId   String
-  user     User   @relation(fields: [userId], references: [id])
-  ticketId String
-  ticket   Ticket @relation(fields: [ticketId], references: [id])
-
-  @@id([gameId, userId, ticketId])
+model Vote {
+  id          String @id @default(cuid())
+  gameId      String
+  userId      String
+  storyPoints Int
+  ticketKey   String
+  game        Game   @relation(fields: [gameId], references: [id])
+  user        User   @relation(fields: [userId], references: [id])
 }

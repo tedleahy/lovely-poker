@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { Game } from "../../types/games.types";
+import { TGame } from "../../types/games.types";
 
 const users = [
   { id: 1, name: 'Gareth Bean' },
@@ -18,7 +18,7 @@ const sprintNames = [
   'Test Poker Game',
 ];
 
-export function mkGame(userId: number): Game {
+export function mkGame(userId: number): TGame {
   // Pick random user for dealer
   const dealer = pickRandom(users);
   const tickets = [1, 2, 3, 4, 5].map(mkTicket);

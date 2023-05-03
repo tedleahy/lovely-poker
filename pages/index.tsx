@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import GamesList from '../components/gamesList/GamesList'
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +9,6 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <GamesList />
     </>
   );
 }

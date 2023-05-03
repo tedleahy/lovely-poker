@@ -1,6 +1,8 @@
+import { Game, User } from "@prisma/client";
+
 // I-prefix to avoid conflict with material-ui's <Card> component
 export interface ICard {
-  id: number;
+  id: string;
   value: string;
 }
 

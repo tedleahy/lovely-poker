@@ -1,7 +1,7 @@
 import { Paper, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import React from "react";
-import { Game } from "../types/games.types";
+import { Game } from "@prisma/client";
 
 interface GameRowProps {
   game: Game;

@@ -1,29 +1,29 @@
-import { Ticket } from '../types/games.types'
+import { Ticket } from '@prisma/client';
 import styles from './TicketList.module.css';
 
 interface TicketListProps {
   tickets: Ticket[];
-  selectedTicketId: string;
-  setSelectedTicketId: any;
+  selectedTicketKey: string;
+  setSelectedTicketKey: any;
 }
 
 const TicketList = (props: TicketListProps) => {
-  const { tickets, selectedTicketId, setSelectedTicketId } = props;
+  const { tickets, selectedTicketKey, setSelectedTicketKey } = props;
   
   return (
     <div className={styles.ticketList}>
       <p className={styles.ticketTitle}>Jira Backlog</p>
-      {tickets.map(({ jiraId, name }) => {
+      {tickets.map(({ id, jiraKey }) => {
         let ticketStyles = styles.ticket;
-        if (jiraId === selectedTicketId) ticketStyles += ` ${styles.selected}`;
+        if (jiraKey === selectedTicketKey) ticketStyles += ` ${styles.selected}`;
 
         return (
           <div
-            key={jiraId}
+            key={id}
             className={ticketStyles}
-            onClick={() => setSelectedTicketId(jiraId)}
+            onClick={() => setSelectedTicketKey(jiraKey)}
           >
-            <p>{jiraId}: {name}</p>
+            <p>{jiraKey}: </p>
           </div>
         );
       })}

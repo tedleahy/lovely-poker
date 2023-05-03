@@ -1,18 +1,23 @@
-export type Game = {
-    id: number;
-    dealerId: number;
-    name: string;
-    tickets: Ticket[];
-    selectedTicketId: string;
-    players: User[];
-}
+import { Prisma, Game, GameUser, Vote, User } from "@prisma/client";
 
-export type Ticket = {
-    jiraId: string;
-    name: string;
-}
+export type GameWithUsers = Prisma.GameGetPayload<{
+    include: { users: true }
+}>
 
-export type User = {
-    id: number;
-    name: string;
+// export type GameWithUsersAndVotes = Prisma.GameGetPayload<{
+//     include: {
+//       users: { include: { user: true } },
+//       votes: { include: { user: true } },
+//     }
+// }>
+
+export type GameWithUsersAndVotes = {
+    Game & {
+    users: (GameUser & {
+        user: User;
+    })[];
+    votes: (Vote & {
+        user: User;
+    })[];
+}
 }

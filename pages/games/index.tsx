@@ -1,8 +1,26 @@
-import type { NextPage } from "next";
+import { Stack } from "@mui/material";
+import { Game } from "@prisma/client";
+import type { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
-import GamesList from "../../components/gamesList/GamesList";
+import GameRow from "../../components/GameRow";
+import CenteredPage from "../../layouts/CenteredPage";
+import prisma from "../../lib/prisma";
 
-const Home: NextPage = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const games = await prisma.game.findMany({
+    select: { id: true, name: true }
+  });
+
+  return {
+    props: { games: games }
+  };
+};
+
+interface GamesIndexProps {
+  games: Game[]
+}
+
+const GamesIndex = (props: GamesIndexProps) => {
   return (
     <>
       <Head>
@@ -10,9 +28,15 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <GamesList />
+      <CenteredPage title={"Saved Games"}>
+        <Stack spacing={2}>
+          {props.games.map((game) => (
+            <GameRow game={game} />
+          ))}
+        </Stack>
+      </CenteredPage>
     </>
   );
 };
 
-export default Home;
+export default GamesIndex;
